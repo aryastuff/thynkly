@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Thynkly{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="auth-card">
+                    <div class="text-center mb-4">
+                        <div class="brand-logo mb-3">
+                            <i class="fas fa-lightbulb fa-3x text-primary"></i>
+                        </div>
+                        <h2 class="brand-title">Join <span class="brand-highlight">Thynkly</span></h2>
+                        <p class="text-muted">Connect with like-minded innovators</p>
+                    </div>
+                    
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="full_name" class="form-label">Full Name *</label>
+                                    <input type="text" class="form-control" id="full_name" name="full_name" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username *</label>
+                                    <input type="text" class="form-control" id="username" name="username" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password *</label>
+                                    <input type="password" class="form-control" id="password" name="password" required minlength="6">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="confirm_password" class="form-label">Confirm Password *</label>
+                                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="field_of_work" class="form-label">Field of Work *</label>
+                            <select class="form-select" id="field_of_work" name="field_of_work" required>
+                                <option value="">Select your field</option>
+                                <option value="entrepreneurship">Entrepreneurship</option>
+                                <option value="computer science">Computer Science</option>
+                                <option value="fintech">Fintech</option>
+                                <option value="healthtech">Healthtech</option>
+                                <option value="design">Design</option>
+                                <option value="aerospace">Aerospace</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="keywords" class="form-label">Keywords</label>
+                            <input type="text" class="form-control" id="keywords" name="keywords" 
+                                   placeholder="e.g., AI, blockchain, sustainability (comma-separated)">
+                            <small class="form-text text-muted">Enter keywords related to your work (comma-separated)</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="interests" class="form-label">Interests</label>
+                            <input type="text" class="form-control" id="interests" name="interests" 
+                                   placeholder="e.g., machine learning, IoT, green energy (comma-separated)">
+                            <small class="form-text text-muted">Enter your interests (comma-separated)</small>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="bio" name="bio" rows="3" 
+                                      placeholder="Tell us about yourself and your innovation journey..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 mb-3">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                    
+                    <div class="text-center">
+                        <p>Already have an account? <a href="{{ url_for('signin') }}">Sign in here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Build static site
+      run: |
+        mkdir -p docs
+        echo "<!DOCTYPE html>" > docs/index.html
+        echo "<html><head><title>Thynkly - Innovator Matching Platform</title></head>" >> docs/index.html
+        echo "<body><h1>Thynkly</h1>" >> docs/index.html
+        echo "<p>An AI-based innovator matching platform built with Flask.</p>" >> docs/index.html
+        echo "<p>This is a Flask web application that requires a server to run.</p>" >> docs/index.html
+        echo "<p>For deployment, please use platforms like:</p>" >> docs/index.html
+        echo "<ul><li>Render</li><li>Heroku</li><li>Railway</li><li>Replit</li></ul>" >> docs/index.html
+        echo "<p>See the <a href='https://github.com/${{ github.repository }}/blob/main/DEPLOYMENT.md'>deployment guide</a> for instructions.</p>" >> docs/index.html
+        echo "</body></html>" >> docs/index.html
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs

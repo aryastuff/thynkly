@@ -1,0 +1,81 @@
+You are an expert full stack AI developer.
+
+Generate a complete project code for me with the following requirements:
+
+✨ **Overall App Description:**
+
+- An AI-based matching tool for innovators.  
+- Matches like-minded innovators based on similar **keywords, interests, and fields of innovation**.  
+- Shows a **list view** with overview details of each matched person.  
+- Provides a **good-looking, modern dashboard UI** with clean UX, similar to my previous project.
+
+✅ **New Additional Features (important):**
+
+1. Users can **view compatibility scores** with others based on their profiles and preferences.
+2. There should be a button (name it something relevant like "Request Collaboration") for a user to send a **collaboration request notification** to the other person.
+3. The other person receives the **notification** and can choose to **approve or decline** the request.
+4. **Only after approval** from the other person, a **chat/messaging feature** is enabled for them to discuss ideas and plans together.
+
+---
+
+💻 **Backend Requirements:**
+
+- Use **Python** with **Flask** or **FastAPI** as backend.  
+- Use **SQLite database** for development (easy to deploy on Render or Replit).  
+- Proper **models** for users, preferences, compatibility requests, and chat messages.  
+- REST API endpoints for:
+
+  - User registration & login  
+  - Updating preferences  
+  - Fetching compatible users  
+  - Sending and receiving collaboration requests  
+  - Sending and receiving chat messages
+
+- Use **Socket.IO or any real-time solution** for live chat if possible.
+
+---
+
+🎨 **Frontend Requirements:**
+
+- Use **HTML, CSS, and JavaScript**, or a simple **ReactJS frontend** if it simplifies functionality.  
+- Modern, clean, professional UI with responsive design, **similar to my previous project’s UI**.
+- Implement **contrast-based text color logic**:  
+  - If the background is **black**, text should be **white**.  
+  - If the background is **white**, text should be **black**.
+
+- Pages:
+
+  - **Home / Dashboard page** showing matched innovators and compatibility scores.  
+  - **Profile page** for editing user details and preferences.  
+  - **Notifications page** to view incoming collaboration requests and approve/decline.  
+  - **Chat page** for messaging after approval.
+
+- After user **registration or login**, show a **welcome message with the person’s name**, like “Welcome, [Name]”, instead of displaying them as an unknown user.
+
+---
+
+🔧 **Project Structure Requirements:**
+
+- Follow clean MVC or standard folder structure:  
+  - **/static/** for CSS, JS, images  
+  - **/templates/** for HTML files (if using Flask)  
+  - **app.py or main.py** as entry point  
+  - **requirements.txt** with all dependencies listed  
+  - **.gitignore** file excluding venv, __pycache__, etc.
+
+- Do **not include any submodules** in the code.  
+- Make sure the app is **easily deployable on Replit, Render, or Railway** without GitHub submodule errors.
+
+---
+
+🛡️ **Additional Requirements:**
+
+- Write **clear comments** in code to explain functionality.  
+- Use environment variables for any secret keys or config (e.g., SECRET_KEY, DATABASE_URL).  
+- Provide sample `.env.example` file listing all required environment variables.
+
+---
+
+✅ **Final Delivery:**
+
+Provide the **full code** for frontend and backend with all files in correct folders, clean and ready to deploy, following the above requirements strictly.

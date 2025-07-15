@@ -1,0 +1,30 @@
+{
+  "name": "Thynkly",
+  "description": "An innovator matching platform built with Flask",
+  "repository": "https://github.com/your-username/thynkly",
+  "logo": "https://example.com/logo.png",
+  "keywords": ["python", "flask", "innovation", "matching", "collaboration"],
+  "env": {
+    "SESSION_SECRET": {
+      "description": "A secret key for session management",
+      "generator": "secret"
+    },
+    "FLASK_ENV": {
+      "description": "Flask environment",
+      "value": "production"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "heroku-postgresql:mini"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ]
+}

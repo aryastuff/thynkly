@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Chat - Thynkly{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="chat-header">
+        <h1 class="mb-3">
+            <i class="fas fa-comments"></i> Chat
+        </h1>
+        <p class="text-muted">Connect with approved collaborators</p>
+    </div>
+    
+    <div class="row chat-container">
+        <!-- Chat Users List -->
+        <div class="col-md-4">
+            <div class="chat-sidebar">
+                <h5 class="mb-3">
+                    <i class="fas fa-users"></i> Collaborators
+                </h5>
+                
+                {% if chat_users %}
+                    <div class="chat-users-list">
+                        {% for user in chat_users %}
+                            <a href="{{ url_for('chat', user_id=user.id) }}" 
+                               class="chat-user-item {% if selected_user and selected_user.id == user.id %}active{% endif %}">
+                                <div class="user-avatar">
+                                    <i class="fas fa-user-circle fa-2x"></i>
+                                </div>
+                                <div class="user-info">
+                                    <div class="user-name">{{ user.full_name }}</div>
+                                    <div class="user-field">{{ user.field_of_work.title() }}</div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">No approved collaborators yet</p>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-sm">
+                            Find Collaborators
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div class="col-md-8">
+            {% if selected_user %}
+                <div class="chat-main">
+                    <div class="chat-header-info">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-user-circle fa-2x text-primary me-3"></i>
+                            <div>
+                                <h5 class="mb-0">{{ selected_user.full_name }}</h5>
+                                <small class="text-muted">{{ selected_user.field_of_work.title() }}</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chatMessages">
+                        {% for message in messages %}
+                            <div class="message {% if message.sender_id == current_user.id %}sent{% else %}received{% endif %}">
+                                <div class="message-content">
+                                    <div class="message-text">{{ message.content }}</div>
+                                    <div class="message-time">
+                                        {{ message.timestamp.strftime('%I:%M %p') }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="chat-input">
+                        <form id="messageForm" class="d-flex">
+                            <input type="text" class="form-control" id="messageInput" 
+                                   placeholder="Type your message..." required>
+                            <button type="submit" class="btn btn-primary ms-2">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <div class="chat-placeholder">
+                    <i class="fas fa-comments fa-4x text-muted mb-4"></i>
+                    <h4>Select a collaborator to start chatting</h4>
+                    <p class="text-muted">Choose someone from the list to begin your conversation</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if selected_user %}
+<script>
+    // Initialize Socket.IO
+    const socket = io();
+    const currentUserId = {{ current_user.id }};
+    const selectedUserId = {{ selected_user.id }};
+    const chatRoom = `chat_${Math.min(currentUserId, selectedUserId)}_${Math.max(currentUserId, selectedUserId)}`;
+    
+    // Join chat room
+    socket.emit('join', {room: chatRoom});
+    
+    // Handle message form submission
+    document.getElementById('messageForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value.trim();
+        
+        if (message) {
+            socket.emit('send_message', {
+                recipient_id: selectedUserId,
+                content: message,
+                room: chatRoom
+            });
+            messageInput.value = '';
+        }
+    });
+    
+    // Handle incoming messages
+    socket.on('receive_message', function(data) {
+        const messagesContainer = document.getElementById('chatMessages');
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${data.sender_id === currentUserId ? 'sent' : 'received'}`;
+        
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                <div class="message-text">${data.content}</div>
+                <div class="message-time">${new Date(data.timestamp).toLocaleTimeString('en-US', {hour: 'numeric', minute: '2-digit', hour12: true})}</div>
+            </div>
+        `;
+        
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+    
+    // Auto-scroll to bottom on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const messagesContainer = document.getElementById('chatMessages');
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
+    
+    // Leave room when page unloads
+    window.addEventListener('beforeunload', function() {
+        socket.emit('leave', {room: chatRoom});
+    });
+</script>
+{% endif %}
+{% endblock %}

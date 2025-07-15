@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications - Thynkly{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="notifications-header">
+        <h1 class="mb-3">
+            <i class="fas fa-bell"></i> Notifications
+        </h1>
+        <p class="text-muted">Manage your collaboration requests</p>
+    </div>
+    
+    <div class="row">
+        <!-- Pending Requests -->
+        <div class="col-md-6">
+            <div class="notification-section">
+                <h4 class="mb-3">
+                    <i class="fas fa-inbox text-primary"></i> Incoming Requests
+                    <span class="badge bg-primary">{{ pending_requests|length }}</span>
+                </h4>
+                
+                {% if pending_requests %}
+                    {% for request in pending_requests %}
+                        <div class="notification-card">
+                            <div class="notification-header">
+                                <strong>{{ request.requester.full_name }}</strong>
+                                <small class="text-muted">{{ request.created_at.strftime('%B %d, %Y at %I:%M %p') }}</small>
+                            </div>
+                            
+                            <div class="notification-body">
+                                <p><strong>Field:</strong> {{ request.requester.field_of_work.title() }}</p>
+                                <p><strong>Email:</strong> {{ request.requester.email }}</p>
+                                
+                                {% if request.message %}
+                                    <div class="request-message">
+                                        <strong>Message:</strong>
+                                        <p class="mb-0">{{ request.message }}</p>
+                                    </div>
+                                {% endif %}
+                                
+                                {% if request.requester.keywords %}
+                                    <div class="keywords-section">
+                                        <small class="text-muted">Keywords:</small>
+                                        <div class="keywords-container">
+                                            {% for keyword in request.requester.keywords.split(',')[:3] %}
+                                                <span class="keyword-tag">{{ keyword.strip() }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="notification-actions">
+                                <form method="POST" action="{{ url_for('respond_request') }}" class="d-inline">
+                                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                                    <input type="hidden" name="action" value="approve">
+                                    <button type="submit" class="btn btn-success btn-sm">
+                                        <i class="fas fa-check"></i> Approve
+                                    </button>
+                                </form>
+                                
+                                <form method="POST" action="{{ url_for('respond_request') }}" class="d-inline">
+                                    <input type="hidden" name="request_id" value="{{ request.id }}">
+                                    <input type="hidden" name="action" value="decline">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-times"></i> Decline
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">No pending requests</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Sent Requests -->
+        <div class="col-md-6">
+            <div class="notification-section">
+                <h4 class="mb-3">
+                    <i class="fas fa-paper-plane text-success"></i> Sent Requests
+                    <span class="badge bg-success">{{ sent_requests|length }}</span>
+                </h4>
+                
+                {% if sent_requests %}
+                    {% for request in sent_requests %}
+                        <div class="notification-card">
+                            <div class="notification-header">
+                                <strong>{{ request.recipient.full_name }}</strong>
+                                <small class="text-muted">{{ request.created_at.strftime('%B %d, %Y at %I:%M %p') }}</small>
+                            </div>
+                            
+                            <div class="notification-body">
+                                <p><strong>Field:</strong> {{ request.recipient.field_of_work.title() }}</p>
+                                <p><strong>Email:</strong> {{ request.recipient.email }}</p>
+                                
+                                {% if request.message %}
+                                    <div class="request-message">
+                                        <strong>Your Message:</strong>
+                                        <p class="mb-0">{{ request.message }}</p>
+                                    </div>
+                                {% endif %}
+                                
+                                <div class="status-badge">
+                                    {% if request.status == 'pending' %}
+                                        <span class="badge bg-warning">
+                                            <i class="fas fa-clock"></i> Pending
+                                        </span>
+                                    {% elif request.status == 'approved' %}
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-check"></i> Approved
+                                        </span>
+                                    {% elif request.status == 'declined' %}
+                                        <span class="badge bg-danger">
+                                            <i class="fas fa-times"></i> Declined
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                
+                                {% if request.status == 'approved' %}
+                                    <div class="mt-2">
+                                        <a href="{{ url_for('chat', user_id=request.recipient.id) }}" 
+                                           class="btn btn-primary btn-sm">
+                                            <i class="fas fa-comments"></i> Start Chat
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-paper-plane fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">No sent requests</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

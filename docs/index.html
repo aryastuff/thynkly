@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thynkly - Innovator Matching Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+        }
+        .brand-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .deployment-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .deployment-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            text-decoration: none;
+            color: #333;
+            transition: transform 0.2s;
+        }
+        .deployment-card:hover {
+            transform: translateY(-5px);
+            color: #333;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .deployment-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="brand-title">
+            <i class="fas fa-lightbulb"></i> Thynkly
+        </div>
+        <p class="subtitle">An AI-based innovator matching platform built with Flask</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            This is a Flask web application that requires a server to run.
+        </div>
+        
+        <h3>Deploy to:</h3>
+        <div class="deployment-cards">
+            <a href="https://render.com" class="deployment-card" target="_blank">
+                <div class="deployment-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <strong>Render</strong>
+                <small class="d-block">Recommended</small>
+            </a>
+            <a href="https://heroku.com" class="deployment-card" target="_blank">
+                <div class="deployment-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <strong>Heroku</strong>
+            </a>
+            <a href="https://railway.app" class="deployment-card" target="_blank">
+                <div class="deployment-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <strong>Railway</strong>
+            </a>
+            <a href="https://replit.com" class="deployment-card" target="_blank">
+                <div class="deployment-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <strong>Replit</strong>
+            </a>
+        </div>
+        
+        <div class="mt-4">
+            <a href="https://github.com/your-username/thynkly/blob/main/DEPLOYMENT.md" class="btn btn-primary btn-lg">
+                <i class="fas fa-book"></i> View Deployment Guide
+            </a>
+        </div>
+        
+        <hr class="my-4">
+        
+        <h4>Features</h4>
+        <div class="row text-start">
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> User Authentication</li>
+                    <li><i class="fas fa-check text-success"></i> Smart Matching Algorithm</li>
+                    <li><i class="fas fa-check text-success"></i> Real-time Chat</li>
+                    <li><i class="fas fa-check text-success"></i> Project Management</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> Collaboration Requests</li>
+                    <li><i class="fas fa-check text-success"></i> Field-based Matching</li>
+                    <li><i class="fas fa-check text-success"></i> Keyword Search</li>
+                    <li><i class="fas fa-check text-success"></i> Responsive Design</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

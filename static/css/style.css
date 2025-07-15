@@ -1,0 +1,570 @@
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --light-color: #f8f9fa;
+    --dark-color: #343a40;
+    --brand-font: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Thynkly Brand Styling */
+.navbar-brand {
+    font-family: var(--brand-font) !important;
+    font-weight: 700 !important;
+    font-size: 1.5rem !important;
+    letter-spacing: -0.5px !important;
+    text-transform: none !important;
+    transition: all 0.3s ease !important;
+}
+
+.navbar-brand:hover {
+    transform: translateY(-1px);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand i {
+    margin-right: 0.5rem;
+    font-size: 1.3rem;
+    color: #ffd700 !important;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Auth page headings */
+.auth-card h2 {
+    font-family: var(--brand-font);
+    font-weight: 600;
+    font-size: 1.8rem;
+    letter-spacing: -0.3px;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Dashboard and page headers */
+.dashboard-header h1,
+.profile-header h1,
+.notifications-header h1,
+.chat-header h1 {
+    font-family: var(--brand-font);
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contrast-based text colors */
+.bg-dark, .bg-primary, .bg-success, .bg-danger, .bg-warning {
+    color: white !important;
+}
+
+.bg-light, .bg-white {
+    color: #333 !important;
+}
+
+/* Authentication Pages */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.auth-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.auth-card h2 {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+/* Brand styling for auth pages */
+.brand-logo {
+    position: relative;
+    display: inline-block;
+}
+
+.brand-logo i {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { 
+        filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.3));
+    }
+    to { 
+        filter: drop-shadow(0 0 20px rgba(0, 123, 255, 0.6));
+    }
+}
+
+.brand-title {
+    font-family: var(--brand-font);
+    font-weight: 600;
+    font-size: 1.9rem;
+    letter-spacing: -0.3px;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.brand-highlight {
+    background: linear-gradient(135deg, #007bff 0%, #6f42c1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Dashboard Styles */
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+/* Innovator Cards */
+.innovator-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.innovator-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.innovator-card .card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 12px 12px 0 0;
+}
+
+.innovator-card .card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.compatibility-score {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.email-text {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.field-badge {
+    background: var(--success-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.keywords-container {
+    margin-top: 0.5rem;
+}
+
+.keyword-tag {
+    background: var(--light-color);
+    color: var(--dark-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+    display: inline-block;
+    border: 1px solid #dee2e6;
+}
+
+.collaboration-form {
+    margin-top: auto;
+}
+
+/* Profile Styles */
+.profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.profile-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+    text-align: center;
+    padding: 1rem;
+}
+
+.avatar-placeholder {
+    margin-bottom: 1rem;
+}
+
+.profile-stats {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Notifications Styles */
+.notifications-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.notification-section {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.notification-card {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.notification-body {
+    margin-bottom: 1rem;
+}
+
+.request-message {
+    background: white;
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.notification-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.status-badge {
+    margin-top: 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--secondary-color);
+}
+
+/* Chat Styles */
+.chat-container {
+    height: 70vh;
+    margin-top: 2rem;
+}
+
+.chat-sidebar {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow-y: auto;
+}
+
+.chat-users-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.chat-user-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+}
+
+.chat-user-item:hover {
+    background-color: #f8f9fa;
+    color: inherit;
+    text-decoration: none;
+}
+
+.chat-user-item.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.user-avatar {
+    margin-right: 1rem;
+    color: var(--primary-color);
+}
+
+.chat-user-item.active .user-avatar {
+    color: white;
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-name {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.user-field {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.chat-main {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header-info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 15px 15px 0 0;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+.message {
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.message.sent {
+    justify-content: flex-end;
+}
+
+.message.received {
+    justify-content: flex-start;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 0.75rem 1rem;
+    border-radius: 18px;
+    position: relative;
+}
+
+.message.sent .message-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.message.received .message-content {
+    background: #f8f9fa;
+    color: var(--dark-color);
+}
+
+.message-text {
+    margin-bottom: 0.25rem;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    opacity: 0.7;
+}
+
+.chat-input {
+    padding: 1.5rem;
+    border-top: 1px solid #dee2e6;
+    border-radius: 0 0 15px 15px;
+}
+
+.chat-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-header,
+    .profile-header,
+    .notifications-header {
+        margin: 1rem -15px 2rem -15px;
+        border-radius: 0;
+    }
+    
+    .innovator-card {
+        margin-bottom: 1rem;
+    }
+    
+    .chat-container {
+        height: auto;
+    }
+    
+    .chat-sidebar {
+        margin-bottom: 1rem;
+        height: auto;
+    }
+    
+    .chat-main {
+        height: 60vh;
+    }
+    
+    .compatibility-score {
+        font-size: 0.8rem;
+        padding: 0.2rem 0.5rem;
+    }
+    
+    .keyword-tag {
+        font-size: 0.7rem;
+        padding: 0.1rem 0.4rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .auth-card {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .message-content {
+        max-width: 85%;
+    }
+    
+    .notification-actions {
+        flex-direction: column;
+    }
+    
+    .notification-actions .btn {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Loading and Animation Effects */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom Scrollbar */
+.chat-messages::-webkit-scrollbar,
+.chat-users-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track,
+.chat-users-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb,
+.chat-users-list::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover,
+.chat-users-list::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
